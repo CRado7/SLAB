@@ -49,8 +49,8 @@ const ThoughtForm = () => {
   };
 
   return (
-    <div>
-      <h3>A day away from the beach is a day too long!</h3>
+    <div className="landing">
+      <h3>Stay salty</h3>
 
       {Auth.loggedIn() ? (
         <>
@@ -89,10 +89,14 @@ const ThoughtForm = () => {
           </form>
         </>
       ) : (
-        <p>
-          You need to be logged in to comment. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
+        <>
+          <p>
+            Read about the best swells, crazy surf stories, and the best ways to start your day.
+          </p>
+          <Link className="btn btn-md btn-dark m-0 signup" to="/signup">
+            Start Reading!
+          </Link>
+        </>
       )}
     </div>
   );

@@ -91,7 +91,7 @@ const ThoughtForm = () => {
       ) : (
         <>
           <p>
-            Read about the best swells, crazy surf stories, and the best ways to start your day.
+            Get the surfers take on the best swells, crazy surf stories, and the best ways to start your day.
           </p>
           <Link className="btn btn-md btn-dark m-0 signup" to="/signup">
             Start Reading!

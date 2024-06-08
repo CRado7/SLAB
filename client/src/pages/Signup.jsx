@@ -47,7 +47,7 @@ const Signup = () => {
             {data ? (
               <p>
                 Success! You may now head{' '}
-                <Link to="/SLAB/">back to the homepage.</Link>
+                <Link to="/SLAB/" className="btn btn-dark text-white m-0">back to the homepage.</Link>
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
@@ -76,7 +76,7 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-block btn-dark"
+                  className="btn btn-block btn-dark text-white"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >

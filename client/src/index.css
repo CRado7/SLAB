@@ -10,7 +10,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #root {
-    background-color:rgb(251, 245, 240)
+    background-color:rgb(198, 238, 237)
 }
 
 /* header */
@@ -22,7 +22,6 @@ h1, h2, h3, h4, h5, h6 {
 .container-header{
     width: 100%;
     justify-content: space-between;
-    border-bottom: solid 1px black;
     margin-bottom: 10px;
 }
 
@@ -37,9 +36,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* landing page */
 
-.landing {
+/* .landing {
     width: 100%;
-}
+} */
 
 /* footer */
 .footer {
@@ -48,5 +47,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* signup page */
 .card1 {
-    margin: 25px 0px 25px 00px;
+    margin: 25px 0px 25px 0px;
+    border: 1px solid black;
+}
+
+.thought-list {
+    width: 100%;
 }

@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
-import SLAB from '/public/SLAB.svg'
+import '../../styles/Header.css';
+
+import SLAB from '/SLAB.svg';
 
 const Header = () => {
   const logout = (event) => {
@@ -12,7 +14,7 @@ const Header = () => {
     <header className="header">
       <div className="container-header flex-row align-center">
         <div className="flex-row align-center">
-          <Link to="/">
+          <Link to="/SLAB/">
             <img className="logo-header" src={SLAB}></img>
           </Link>
           {/* <p className="m-0">Just Another Surf Blog</p> */}

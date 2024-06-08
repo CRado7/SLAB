@@ -1,0 +1,52 @@
+.header {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.container-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.logo-header {
+  width: 60px;
+  height: auto;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.btn-dark {
+  background-color: #333;
+  color: #fff;
+}
+
+.btn-info {
+  background-color: #0080ff;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.login {
+  margin-right: 10px;
+}

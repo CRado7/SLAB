@@ -9,18 +9,18 @@ const ThoughtList = ({
 }) => {
 
   return (
-    <div>
+    <div className="thought-list">
     {Auth.loggedIn() ? (
       <>
       {showTitle && <h3>{title}</h3>}
       {thoughts &&
         thoughts.map((thought) => (
-          <div key={thought._id} className="card mb-3">
+          <div key={thought._id} className="card1 mb-3">
             <h4 className="card-header bg-dark p-2 m-0">
               {showUsername ? (
                 <Link
                   className="text-white"
-                  to={`/profiles/${thought.thoughtAuthor}`}
+                  to={`profiles/${thought.thoughtAuthor}`}
                 >
                   {thought.thoughtAuthor} <br />
                   <span style={{ fontSize: '1rem' }}>
@@ -29,7 +29,7 @@ const ThoughtList = ({
                 </Link>
               ) : (
                 <>
-                  <span style={{ fontSize: '1rem' }}>
+                  <span className="text-white" style={{ fontSize: '1rem' }}>
                     You posted this on <i className="date">{thought.createdAt}</i>
                   </span>
                 </>
@@ -40,7 +40,7 @@ const ThoughtList = ({
             </div>
             <Link
               className="btn btn-primary text-white btn-block btn-squared"
-              to={`/thoughts/${thought._id}`}
+              to={`thoughts/${thought._id}`}
             >
               <b>View comments or add a comment!</b>
             </Link>
@@ -50,9 +50,9 @@ const ThoughtList = ({
   ) : (
     <>
     </>
-  )};
+  )}
   </div>
-  );
+  )
 };
 
 export default ThoughtList;

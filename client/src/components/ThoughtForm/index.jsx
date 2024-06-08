@@ -7,6 +7,8 @@ import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
+import '../../styles/ThoughtForm.css';
+
 const ThoughtForm = () => {
   const [thoughtText, setThoughtText] = useState('');
 
@@ -93,13 +95,13 @@ const ThoughtForm = () => {
           <p>
             Get the surfers take on the best swells, crazy surf stories, and the best ways to start your day.
           </p>
-          <Link className="btn btn-md btn-dark m-0 signup" to="signup">
+          <Link className="btn btn-med text-white m-0 signup" to="signup">
             Start Reading!
           </Link>
         </>
       )}
     </div>
   )
-};
+}
 
 export default ThoughtForm;

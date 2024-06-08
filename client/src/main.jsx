@@ -9,6 +9,8 @@ import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import ErrorPage from './pages/ErrorPage';
 
+import './index.css'
+
 const router = createBrowserRouter([
   {
     path: "/SLAB/",

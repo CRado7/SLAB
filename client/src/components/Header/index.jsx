@@ -20,7 +20,7 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-dark text-white btn-info m-1 login" to="/me">
+              <Link className="btn btn-dark text-white btn-info m-1 login" to="me">
                 {/* {Auth.getProfile().data.username}'s profile */}
                 Profile
               </Link>
@@ -30,7 +30,7 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link className="btn btn-dark text-white btn-info m-2 login" to="/login">
+              <Link className="btn btn-dark text-white btn-info m-2 login" to="login">
                 Login
               </Link>
             </>

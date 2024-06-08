@@ -14,12 +14,12 @@ export default defineConfig({
       }
     }
   },
-  build: {
-    outDir: 'dist', // Specify your output directory
-    rollupOptions: {
-      input: {
-        main: 'src/main.jsx' // Adjust the path to your main entry file
-      }
-    }
-  }
+//   build: {
+//     outDir: 'dist', // Specify your output directory
+//     rollupOptions: {
+//       input: {
+//         main: 'src/main.jsx' // Adjust the path to your main entry file
+//       }
+//     }
+//   }
 });

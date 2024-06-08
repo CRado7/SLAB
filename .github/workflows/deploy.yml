@@ -27,6 +27,4 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.SLAB}}  # Replace ACCESS_TOKEN with your personal access token
-          publish_dir: ./client/dist  # Adjust this path to match your build output directory
-          publish_branch: gh-pages
+          publish_dir: ./client/dist

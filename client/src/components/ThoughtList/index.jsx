@@ -20,7 +20,7 @@ const ThoughtList = ({
               {showUsername ? (
                 <Link
                   className="text-white"
-                  to={`profiles/${thought.thoughtAuthor}`}
+                  to={`/profiles/${thought.thoughtAuthor}`}
                 >
                   {thought.thoughtAuthor} <br />
                   <span style={{ fontSize: '1rem' }}>
@@ -40,7 +40,7 @@ const ThoughtList = ({
             </div>
             <Link
               className="btn btn-primary text-white btn-block btn-squared"
-              to={`thoughts/${thought._id}`}
+              to={`/thoughts/${thought._id}`}
             >
               <b>View comments or add a comment!</b>
             </Link>

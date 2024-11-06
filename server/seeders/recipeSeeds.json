@@ -1,0 +1,32 @@
+[
+  {
+    "recipeText": "Quick energy bites made with oats, peanut butter, and honey.",
+    "recipeAuthor": "surfingChef",
+    "comments": [
+      {
+        "commentText": "Great snack before a long session!",
+        "commentAuthor": "waveRider"
+      }
+    ]
+  },
+  {
+    "recipeText": "Banana and almond smoothie with protein powder.",
+    "recipeAuthor": "oceanBaker",
+    "comments": [
+      {
+        "commentText": "Perfect for a quick refuel.",
+        "commentAuthor": "surfingChef"
+      }
+    ]
+  },
+  {
+    "recipeText": "Homemade granola bars with nuts and dried fruit.",
+    "recipeAuthor": "waveRider",
+    "comments": [
+      {
+        "commentText": "Love the mix of flavors!",
+        "commentAuthor": "oceanBaker"
+      }
+    ]
+  }
+]

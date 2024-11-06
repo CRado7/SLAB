@@ -1,37 +1,55 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+export const GET_USERS = gql`
+  query users {
+    users {
       _id
       username
       email
-      thoughts {
+      recipes {
         _id
-        thoughtText
+        recipeText
+        recipeAuthor
+        createdAt
+      }
+      savedRecipes {
+        _id
+        recipeText
+        recipeAuthor
         createdAt
       }
     }
   }
 `;
 
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
+export const GET_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
       _id
-      thoughtText
-      thoughtAuthor
-      createdAt
+      username
+      email
+      recipes {
+        _id
+        recipeText
+        recipeAuthor
+        createdAt
+      }
+      savedRecipes {
+        _id
+        recipeText
+        recipeAuthor
+        createdAt
+      }
     }
   }
 `;
 
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
+export const GET_RECIPES = gql`
+  query recipes($username: String) {
+    recipes(username: $username) {
       _id
-      thoughtText
-      thoughtAuthor
+      recipeText
+      recipeAuthor
       createdAt
       comments {
         _id
@@ -43,16 +61,39 @@ export const QUERY_SINGLE_THOUGHT = gql`
   }
 `;
 
-export const QUERY_ME = gql`
+export const GET_RECIPE = gql`
+  query recipe($recipeId: ID!) {
+    recipe(recipeId: $recipeId) {
+      _id
+      recipeText
+      recipeAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+      }
+    }
+  }
+`;
+
+export const GET_ME = gql`
   query me {
     me {
       _id
       username
       email
-      thoughts {
+      recipes {
         _id
-        thoughtText
-        thoughtAuthor
+        recipeText
+        recipeAuthor
+        createdAt
+      }
+      savedRecipes {
+        _id
+        recipeText
+        recipeAuthor
         createdAt
       }
     }

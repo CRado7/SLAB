@@ -30,9 +30,15 @@ const commentSchema = new Schema(
 // Recipe schema
 const recipeSchema = new Schema(
   {
-    recipeText: {
+    recipeTitle: {
       type: String,
       required: 'You need to provide a recipe!',
+      minlength: 1,
+      maxlength: 1000
+    },
+    recipeIngredients: {
+      type: [String],
+      required: 'You need to provide ingredients!',
       minlength: 1,
       maxlength: 1000
     },

@@ -47,10 +47,11 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addRecipe: async (parent, { recipeText }, context) => {
+    addRecipe: async (parent, { recipeTitle, recipeIngredients }, context) => {
       if (context.user) {
         const recipe = await Recipe.create({
-          recipeText,
+          recipeTitle,
+          recipeIngredients,
           recipeAuthor: context.user.username,
         });
 

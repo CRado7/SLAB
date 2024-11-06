@@ -1,7 +1,7 @@
 const db = require('../config/connection');
-const { User, Recipe } = require('../models'); // Update the import to use Recipe
+const { User, Recipe } = require('../models');
 const userSeeds = require('./userSeeds.json');
-const recipeSeeds = require('./recipeSeeds.json'); // Change the file to recipeSeeds.json
+const recipeSeeds = require('./recipeSeeds.json');
 const cleanDB = require('./cleanDB');
 
 db.once('open', async () => {
@@ -15,7 +15,17 @@ db.once('open', async () => {
 
     // Seed Recipe data and update the User with recipe references
     for (let i = 0; i < recipeSeeds.length; i++) {
-      const { _id, recipeAuthor } = await Recipe.create(recipeSeeds[i]); // Use Recipe instead of Thought
+      const recipe = recipeSeeds[i];
+
+      // Ensure that recipeIngredients is an array (this step may be redundant if your JSON is correctly formatted)
+      if (!Array.isArray(recipe.recipeIngredients)) {
+        console.error('recipeIngredients is not an array:', recipe.recipeIngredients);
+        continue; // Skip this entry if recipeIngredients is not an array
+      }
+
+      // Create the recipe and associate with the user
+      const { _id, recipeAuthor } = await Recipe.create(recipe);
+
       const user = await User.findOneAndUpdate(
         { username: recipeAuthor },
         {

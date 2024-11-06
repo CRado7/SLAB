@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { GET_RECIPE } from '../utils/queries';
 import Auth from '../utils/auth';
 import '../styles/RecipeCard.css';
 
@@ -38,7 +36,7 @@ const RecipeCard = ({ recipe }) => {
 
   return (
     <div className="recipe-card" onClick={handleCardClick}>
-      <h3>{recipe.recipeText}</h3>
+      <h3>{recipe.recipeTitle}</h3>
       <p>Author: {recipe.recipeAuthor}</p>
       <p>Created At: {new Date(recipe.createdAt).toLocaleDateString()}</p>
 

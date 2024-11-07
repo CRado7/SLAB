@@ -5,6 +5,7 @@ import { ADD_RECIPE } from '../utils/mutations'; // Adjust the path to where you
 function RecipeModal({ isOpen, onClose, onSubmit }) {
   const [ingredients, setIngredients] = useState(['']); // Initial state with one empty ingredient field
   const [recipeName, setRecipeName] = useState('');
+  const [recipeInstructions, setRecipeInstructions] = useState(''); // New state for instructions
   const [addRecipe, { loading, error }] = useMutation(ADD_RECIPE); // Set up the mutation
 
   const handleIngredientChange = (index, event) => {
@@ -26,17 +27,16 @@ function RecipeModal({ isOpen, onClose, onSubmit }) {
     event.preventDefault();
     const recipeTitle = recipeName;
     const ingredientsArray = ingredients.filter(ingredient => ingredient.trim() !== ''); // Remove empty ingredients
+    const instructions = recipeInstructions.trim(); // Get recipe instructions
 
     try {
-        console.log('Submitting recipe data:', { recipeTitle, ingredientsArray });
-        console.log('recipeTitle:', recipeTitle);
-        console.log('ingredientsArray:', ingredientsArray);
+        console.log('Submitting recipe data:', { recipeTitle, ingredientsArray, instructions });
 
       await addRecipe({
-        variables: { recipeTitle, recipeIngredients: ingredientsArray }, // Pass the recipeName and ingredients array
+        variables: { recipeTitle, recipeIngredients: ingredientsArray, recipeInstructions: instructions }, // Pass the recipeName, ingredients array, and instructions
       });
       onClose(); // Close the modal after submission
-      onSubmit(recipeTitle, ingredientsArray); // Optionally, call onSubmit if needed
+      onSubmit(recipeTitle, ingredientsArray, instructions); // Optionally, call onSubmit if needed
     } catch (err) {
       console.error('Error adding recipe:', err);
     }
@@ -60,7 +60,7 @@ function RecipeModal({ isOpen, onClose, onSubmit }) {
               required
             />
           </label>
-          
+
           <label>
             Ingredients:
             {ingredients.map((ingredient, index) => (
@@ -86,6 +86,17 @@ function RecipeModal({ isOpen, onClose, onSubmit }) {
           <button type="button" onClick={handleAddIngredient}>
             Add Ingredient
           </button>
+
+          <label>
+            Instructions:
+            <textarea
+              name="recipeInstructions"
+              value={recipeInstructions}
+              onChange={(e) => setRecipeInstructions(e.target.value)}
+              placeholder="Enter the recipe instructions"
+              required
+            />
+          </label>
 
           <button type="submit" disabled={loading}>Post Recipe</button>
         </form>

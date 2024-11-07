@@ -50,6 +50,7 @@ export const GET_RECIPES = gql`
       _id
       recipeTitle
       recipeIngredients
+      recipeInstructions
       recipeAuthor
       createdAt
       comments {
@@ -68,12 +69,28 @@ export const GET_RECIPE = gql`
       _id
       recipeTitle
       recipeIngredients
+      recipeInstructions
       recipeAuthor
       createdAt
       comments {
         _id
         commentText
         commentAuthor
+        createdAt
+      }
+    }
+  }
+`;
+
+export const GET_SAVED_RECIPES = gql`
+  query getSavedRecipes {
+    me {
+      _id
+      savedRecipes {
+        _id
+        recipeTitle
+        recipeInstructions
+        recipeIngredients
         createdAt
       }
     }
@@ -89,12 +106,16 @@ export const GET_ME = gql`
       recipes {
         _id
         recipeTitle
+        recipeIngredients
+        recipeInstructions
         recipeAuthor
         createdAt
       }
       savedRecipes {
         _id
-        recipeText
+        recipeTitle
+        recipeIngredients
+        recipeInstructions
         recipeAuthor
         createdAt
       }

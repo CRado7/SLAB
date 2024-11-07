@@ -1,0 +1,25 @@
+.favorites-page {
+    padding: 20px;
+  }
+  
+  .recipe-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .recipe-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .recipe-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .recipe-card p {
+    font-size: 1rem;
+  }
+  

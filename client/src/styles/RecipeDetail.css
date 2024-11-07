@@ -1,0 +1,22 @@
+.favorite-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s;
+  }
+  
+  .favorite-button:hover {
+    transform: scale(1.2);
+  }
+  
+  .heart-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .favorite-button.saved .heart-icon {
+    fill: red;
+    stroke: red;
+  }
+  

@@ -47,11 +47,12 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addRecipe: async (parent, { recipeTitle, recipeIngredients }, context) => {
+    addRecipe: async (parent, { recipeTitle, recipeIngredients, recipeInstructions }, context) => {
       if (context.user) {
         const recipe = await Recipe.create({
           recipeTitle,
           recipeIngredients,
+          recipeInstructions,
           recipeAuthor: context.user.username,
         });
 
@@ -82,14 +83,36 @@ const resolvers = {
     },
     saveRecipe: async (parent, { recipeId }, context) => {
       if (context.user) {
+        console.log("User ID:", context.user._id);
+        console.log("Recipe ID:", recipeId);
+        try {
+          const updatedUser = await User.findByIdAndUpdate(
+            context.user._id,
+            { $addToSet: { savedRecipes: recipeId } },
+            { new: true }
+          ).populate('savedRecipes');
+    
+          console.log("Updated user with saved recipes:", updatedUser.savedRecipes);
+          return updatedUser;
+        } catch (err) {
+          console.error("Error during saveRecipe mutation:", err);
+          throw new Error("Failed to save recipe");
+        }
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    
+    unsaveRecipe: async (parent, { recipeId }, context) => {
+      if (context.user) {
+        // Pull the recipeId from the savedRecipes array
         return User.findByIdAndUpdate(
           context.user._id,
-          { $addToSet: { savedRecipes: recipeId } },
+          { $pull: { savedRecipes: recipeId } }, // Remove recipeId from savedRecipes array
           { new: true }
         ).populate('savedRecipes');
       }
       throw new AuthenticationError('You need to be logged in!');
-    },
+    },    
     removeRecipe: async (parent, { recipeId }, context) => {
       if (context.user) {
         const recipe = await Recipe.findById(recipeId);

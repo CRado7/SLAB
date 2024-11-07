@@ -25,7 +25,7 @@ const RecipeCard = ({ recipe }) => {
     if (!Auth.loggedIn()) {
       setModalOpen(true); // Show login prompt if not logged in
     } else {
-      navigate(`/recipes/${recipe._id}`); // Navigate to recipe detail page if logged in
+      navigate(`recipes/${recipe._id}`); // Navigate to recipe detail page if logged in
     }
   };
 

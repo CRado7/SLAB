@@ -25,11 +25,12 @@ export const LOGIN = gql`
 `;
 
 export const ADD_RECIPE = gql`
-  mutation addRecipe($recipeTitle: String!, $recipeIngredients: [String]!) {
-    addRecipe(recipeTitle: $recipeTitle, recipeIngredients: $recipeIngredients) {
+  mutation addRecipe($recipeTitle: String!, $recipeIngredients: [String]!, $recipeInstructions: String!) {
+    addRecipe(recipeTitle: $recipeTitle, recipeIngredients: $recipeIngredients, recipeInstructions: $recipeInstructions) {
       _id
       recipeTitle
       recipeIngredients
+      recipeInstructions
       recipeAuthor
       createdAt
     }
@@ -40,7 +41,7 @@ export const ADD_COMMENT = gql`
   mutation addComment($recipeId: ID!, $commentText: String!) {
     addComment(recipeId: $recipeId, commentText: $commentText) {
       _id
-      recipeText
+      recipeTitle
       comments {
         _id
         commentText
@@ -51,23 +52,37 @@ export const ADD_COMMENT = gql`
 `;
 
 export const SAVE_RECIPE = gql`
-  mutation saveRecipe($recipeId: ID!) {
+mutation saveRecipe($recipeId: ID!) {
     saveRecipe(recipeId: $recipeId) {
       _id
       savedRecipes {
         _id
-        recipeText
+        recipeTitle
+        createdAt
+      }
+    }
+  }
+`
+
+export const UNSAVE_RECIPE = gql`
+  mutation unsaveRecipe($recipeId: ID!) {
+    unsaveRecipe(recipeId: $recipeId) {
+      _id
+      savedRecipes {
+        _id
+        recipeTitle
         createdAt
       }
     }
   }
 `;
 
+
 export const REMOVE_RECIPE = gql`
   mutation removeRecipe($recipeId: ID!) {
     removeRecipe(recipeId: $recipeId) {
       _id
-      recipeText
+      recipeTitle
     }
   }
 `;

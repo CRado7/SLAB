@@ -42,6 +42,12 @@ const recipeSchema = new Schema(
       minlength: 1,
       maxlength: 1000
     },
+    recipeInstructions: {
+      type: String,
+      required: 'You need to provide instructions!',
+      minlength: 1,
+      maxlength: 1000
+    },
     recipeAuthor: {
       type: String,
       required: true

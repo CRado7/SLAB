@@ -13,6 +13,7 @@ function Navbar() {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
+    navigate("/");
   };
 
   const handleAddPostClick = () => {

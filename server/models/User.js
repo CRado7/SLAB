@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 
 // User schema
 const userSchema = new Schema(
@@ -32,7 +33,10 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Recipe'
       }
-    ]
+    ],
+    // Add these fields for password reset functionality
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
   },
   {
     toJSON: {
@@ -55,6 +59,14 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
+// Method to generate a password reset token
+userSchema.methods.generatePasswordResetToken = function () {
+  const token = crypto.randomBytes(20).toString('hex');
+  this.resetPasswordToken = token;
+  this.resetPasswordExpires = Date.now() + 3600000; // Token expires in 1 hour
+  return token;
+};
+
 // Virtual to get the count of user's recipes
 userSchema.virtual('recipeCount').get(function () {
   return this.recipes.length;
@@ -63,3 +75,4 @@ userSchema.virtual('recipeCount').get(function () {
 const User = model('User', userSchema);
 
 module.exports = User;
+

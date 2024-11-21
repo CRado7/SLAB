@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Recipe, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
+const { sendPasswordResetEmail } = require('../utils/email');
 
 const resolvers = {
   Query: {
@@ -130,6 +131,39 @@ const resolvers = {
         throw new AuthenticationError('You can only delete your own recipes');
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+
+    requestPasswordReset: async (parent, { email }) => {
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new Error("No user found with that email.");
+      }
+
+      const resetToken = user.generatePasswordResetToken();
+      await user.save();
+
+      // Send reset password email with the token
+      await sendPasswordResetEmail(email, resetToken);
+
+      return true;
+    },
+
+    resetPassword: async (parent, { token, password }) => {
+      const user = await User.findOne({
+        resetPasswordToken: token,
+        resetPasswordExpires: { $gt: Date.now() },
+      });
+    
+      if (!user) {
+        throw new Error('Invalid or expired token');
+      }
+    
+      user.password = password;
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpires = undefined;
+      await user.save();
+    
+      return true;
     },
   }
 };

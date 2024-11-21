@@ -48,6 +48,8 @@ const typeDefs = gql`
     saveRecipe(recipeId: ID!): User  
     unsaveRecipe(recipeId: ID!): User  
     removeRecipe(recipeId: ID!): Recipe
+    requestPasswordReset(email: String!): Boolean
+    resetPassword(password: String!, token: String!): Auth
   }
 `;
 

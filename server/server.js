@@ -3,6 +3,7 @@ const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
+const cors = require('cors');
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -14,17 +15,26 @@ const server = new ApolloServer({
   resolvers,
 });
 
-// Create a new instance of an Apollo server with the GraphQL schema
+// Initialize Apollo Server and apply it as middleware
 const startApolloServer = async () => {
   await server.start();
+
+  app.use(
+    cors({
+      origin: 'http://localhost:3000', // Replace with your frontend's origin
+      credentials: true, // Allow cookies to be sent
+    })
+  );
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
+  // Middleware to handle GraphQL requests
   app.use('/graphql', expressMiddleware(server, {
     context: authMiddleware
   }));
 
+  // Serve the frontend files from the 'dist' directory
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));
 
@@ -33,6 +43,7 @@ const startApolloServer = async () => {
     });
   }
 
+  // Connect to the database and start the Express server
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
@@ -42,4 +53,4 @@ const startApolloServer = async () => {
 };
 
 // Call the async function to start the server
-  startApolloServer();
+startApolloServer();

@@ -39,7 +39,7 @@ function Navbar() {
 
       {/* Center Logo */}
       <div className="navbar-logo">
-        <Link to="/SLAB"><img src="/path/to/logo.png" alt="Logo" /></Link>
+        <Link to="/"><img src="/path/to/logo.png" alt="Logo" /></Link>
       </div>
 
       {/* Right Section (Add Post, Login/Signup or Logout/Favorites) */}

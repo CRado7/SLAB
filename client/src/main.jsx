@@ -7,13 +7,14 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import RecipeDetail from './pages/RecipeDetail';
 import Favorites from './pages/Favorites';
+import ResetPassword from './pages/ResetPassword.jsx';
 import ErrorPage from './pages/ErrorPage';
 
 import './index.css'
 
 const router = createBrowserRouter([
   {
-    path: "/SLAB/",
+    path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
@@ -32,6 +33,9 @@ const router = createBrowserRouter([
       }, {
         path: 'favorites',
         element: <Favorites />
+      }, {
+        path: 'reset-password/:token',
+        element: <ResetPassword />
       }
     ]
   },

@@ -11,7 +11,7 @@ const sendPasswordResetEmail = async (email, token) => {
         }
     });
 
-  const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${token}`;
+  const resetUrl = `http://localhost:3001/reset-password/${token}`;
   const mailOptions = {
     from: 'Crater <no-reply@yourdomain.com>',
     to: email,
@@ -22,4 +22,4 @@ const sendPasswordResetEmail = async (email, token) => {
   await transporter.sendMail(mailOptions);
 };
 
-module.exports = sendPasswordResetEmail;
+module.exports = { sendPasswordResetEmail };

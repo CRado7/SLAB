@@ -147,7 +147,7 @@ const resolvers = {
 
       return true;
     },
-
+    
     resetPassword: async (parent, { token, password }) => {
       const user = await User.findOne({
         resetPasswordToken: token,
@@ -163,8 +163,8 @@ const resolvers = {
       user.resetPasswordExpires = undefined;
       await user.save();
     
-      return true;
-    },
+      return { success: true, message: 'Password has been reset successfully' };  // Matching the schema
+    }, 
   }
 };
 

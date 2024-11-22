@@ -16,6 +16,7 @@ const ResetPassword = () => {
       await resetPassword({
         variables: { token, password },
       });
+      alert('Password reset successfully');
       navigate('/login'); // Use navigate instead of history.push
     } catch (err) {
       setError('Failed to reset password');

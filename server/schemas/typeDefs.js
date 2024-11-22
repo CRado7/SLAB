@@ -32,6 +32,11 @@ const typeDefs = gql`
     user: User
   }
 
+  type PasswordResetResponse {
+    success: Boolean
+    message: String
+  }
+
   type Query {
     users: [User]
     user(username: String!): User
@@ -49,7 +54,7 @@ const typeDefs = gql`
     unsaveRecipe(recipeId: ID!): User  
     removeRecipe(recipeId: ID!): Recipe
     requestPasswordReset(email: String!): Boolean
-    resetPassword(password: String!, token: String!): Auth
+    resetPassword(password: String!, token: String!): PasswordResetResponse
   }
 `;
 

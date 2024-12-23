@@ -1,5 +1,6 @@
 [
   {
+    "recipePicture": "https://res.cloudinary.com/dwp2h5cak/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1734106981/bites_r3lmzx.jpg",
     "recipeTitle": "Quick energy bites made with oats, peanut butter, and honey.",
     "recipeIngredients": [
       "1 cup rolled oats",
@@ -19,6 +20,7 @@
     ]
   },
   {
+    "recipePicture": "https://res.cloudinary.com/dwp2h5cak/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1734106981/smoothie_qnzm4s.jpg",
     "recipeTitle": "Banana and almond smoothie with protein powder.",
     "recipeIngredients": [
       "1 banana",
@@ -37,6 +39,7 @@
     ]
   },
   {
+    "recipePicture": "https://res.cloudinary.com/dwp2h5cak/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1734106981/Granola-Bars-Main1_pagi4u.jpg",
     "recipeTitle": "Homemade granola bars with nuts and dried fruit.",
     "recipeIngredients": [
       "2 cups rolled oats",

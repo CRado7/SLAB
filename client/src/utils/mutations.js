@@ -25,9 +25,10 @@ export const LOGIN = gql`
 `;
 
 export const ADD_RECIPE = gql`
-  mutation addRecipe($recipeTitle: String!, $recipeIngredients: [String]!, $recipeInstructions: String!) {
-    addRecipe(recipeTitle: $recipeTitle, recipeIngredients: $recipeIngredients, recipeInstructions: $recipeInstructions) {
+  mutation addRecipe($recipePicture: String, $recipeTitle: String!, $recipeIngredients: [String]!, $recipeInstructions: String!) {
+    addRecipe(recipePicture: $recipePicture, recipeTitle: $recipeTitle, recipeIngredients: $recipeIngredients, recipeInstructions: $recipeInstructions) {
       _id
+      recipePicture
       recipeTitle
       recipeIngredients
       recipeInstructions

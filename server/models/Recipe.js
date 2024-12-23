@@ -30,6 +30,12 @@ const commentSchema = new Schema(
 // Recipe schema
 const recipeSchema = new Schema(
   {
+    recipePicture: {
+      type: String,
+      required: 'You need to provide a picture!',
+      minlength: 1,
+      maxlength: 1000
+    },
     recipeTitle: {
       type: String,
       required: 'You need to provide a recipe!',

@@ -1,85 +1,105 @@
 /* Basic Navbar Styles */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #333;
-    color: white;
-  }
-  
-  .navbar-left, .navbar-logo, .navbar-right {
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Right-side items */
-  .navbar-right button {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    margin: 0 0.5rem;
-  }
-  
-  /* Signup button styling */
+.navbar, a, button{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .25rem;
+  background-color: #024049;
+  color: white;
+  position: relative;
+}
+
+.navbar-logo img {
+  width: 75px;
+}
+
+a, button {
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+  font-size: small;
+  text-transform: uppercase;
+  transition: .3s;
+}
+
+a:hover, .favorites-btn:hover, .add-post-btn:hover, .logout-btn:hover {
+  text-decoration: none;
+  background-color: rgb(255, 250, 227);
+  border-radius: 0;
+  color: #024049;
+}
+
+.navbar-left, .navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Right-side items */
+.navbar-right button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Signup button styling */
 .signup-btn {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-left: 0.5rem;
-  }
-  
-  /* Right-side items styling adjustments */
-  .navbar-right button {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    margin: 0 0.5rem;
-  }
-  
-  
-  .user-name {
-    margin-right: 1rem;
-    font-weight: bold;
-  }
-  
-  /* Dropdown menu styling for tablet view */
-  .menu-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Right-side items styling adjustments */
+.navbar-right button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: small;
+}
+
+.navbar-hidden {
+  transform: translateY(-100%); /* Move the navbar up and out of view */
+  transition: transform 0.3s ease;
+}
+
+.user-name {
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+/* Dropdown menu styling for tablet view */
+.menu-button {
+  display: none;
+}
+
+.navbar-dropdown {
+  display: flex;
+  flex-direction: flex-end;
+}
+
+.dropdown-open .navbar-dropdown {
+  display: flex;
+  position: absolute;
+  right: 0;
+  background: rgba(2, 65, 75, 0.90);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive for tablet screens */
+@media (max-width: 1000px) {
+  .navbar-dropdown {
     display: none;
   }
-  
-  .navbar-dropdown {
-    display: flex;
-  }
-  
-  .dropdown-open .navbar-dropdown {
+
+  .menu-button {
     display: block;
+  }
+
+  .dropdown-open .navbar-dropdown {
     position: absolute;
     top: 100%;
-    right: 0;
-    background: #222;
-    padding: 1rem;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
   }
-  
-  /* Responsive for tablet screens */
-  @media (max-width: 768px) {
-    .navbar-right {
-      flex-direction: column;
-    }
-  
-    .navbar-dropdown {
-      display: none;
-    }
-  
-    .menu-button {
-      display: block;
-    }
-  }
-  
+}

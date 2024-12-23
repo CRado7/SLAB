@@ -5,12 +5,15 @@
     font-family: 'Roboto', sans-serif;
 }
 
+/* Prevent body from scrolling */
+  
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', sans-serif;
 }
 
 #root {
-    background-color:rgb(198, 238, 237)
+    background-color:rgb(255, 250, 227);
 }
 
 /* header */
@@ -41,9 +44,9 @@ h1, h2, h3, h4, h5, h6 {
 } */
 
 /* footer */
-.footer {
+/* .footer {
     border-top: solid 1px black;
-}
+} */
 
 /* signup page */
 .card1 {

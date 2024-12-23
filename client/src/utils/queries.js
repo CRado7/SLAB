@@ -48,6 +48,7 @@ export const GET_RECIPES = gql`
   query recipes($username: String) {
     recipes(username: $username) {
       _id
+      recipePicture
       recipeTitle
       recipeIngredients
       recipeInstructions
@@ -67,6 +68,7 @@ export const GET_RECIPE = gql`
   query recipe($recipeId: ID!) {
     recipe(recipeId: $recipeId) {
       _id
+      recipePicture
       recipeTitle
       recipeIngredients
       recipeInstructions
@@ -88,6 +90,8 @@ export const GET_SAVED_RECIPES = gql`
       _id
       savedRecipes {
         _id
+        recipePicture
+        recipeAuthor
         recipeTitle
         recipeInstructions
         recipeIngredients

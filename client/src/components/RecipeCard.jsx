@@ -36,16 +36,22 @@ const RecipeCard = ({ recipe }) => {
 
   return (
     <div className="recipe-card" onClick={handleCardClick}>
-      <h3>{recipe.recipeTitle}</h3>
-      <p>Author: {recipe.recipeAuthor}</p>
-      <p>Created At: {new Date(recipe.createdAt).toLocaleDateString()}</p>
+      <div className="recipe-image">
+        <img src={recipe.recipePicture} alt={recipe.recipeTitle} />
+      </div>
+
+      <div className="recipe-detail"> 
+        <h3>{recipe.recipeTitle}</h3>
+        <p>Chef: {recipe.recipeAuthor}</p>
+        <p>Created On: {new Date(recipe.createdAt).toLocaleDateString()}</p>
+      </div>
 
       {/* Modal for not logged in */}
       {modalOpen && (
         <div className="modal" onClick={handleCloseModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close" onClick={handleCloseModal}>&times;</span>
-            <p>You need to be logged in to check these tasty bites out!</p>
+            <span className="card-close" onClick={handleCloseModal}>&times;</span>
+            <p>You need to be logged in to see this recipe!</p>
           </div>
         </div>
       )}

@@ -1,17 +1,31 @@
-/* src/styles/RecipeCard.css */
+/* Recipe Card Container */
 .recipe-card {
   border: 1px solid #ccc;
+  background-color: rgb(255, 255, 255);
   border-radius: 8px;
   padding: 16px;
   margin: 16px;
   cursor: pointer;
   transition: box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  flex-direction: row; /* Default layout: image and text side by side */
 }
 
+/* Recipe Image */
+.recipe-image img {
+  width: 200px;
+  height: 200px;
+  margin-right: 16px;
+  object-fit: cover; /* Ensures image maintains aspect ratio */
+}
+
+/* Hover Effect */
 .recipe-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Modal Styling */
 .modal {
   display: flex;
   position: fixed;
@@ -30,20 +44,70 @@
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
-  max-width: 400px;
+  max-width: 300px;
+  height: 175px;
   text-align: center;
 }
 
-.close {
+.modal-content p {
+  margin: 40px 0 30px 0;
+}
+
+/* Close Button */
+.card-close {
   color: #aaa;
   float: right;
+  top: 0;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.card-close:hover,
+.card-close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
+
+/* Responsive Design */
+
+/* For tablets and smaller devices (up to 768px) */
+@media (max-width: 768px) {
+  .recipe-card {
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: stretch;
+  }
+
+  .recipe-image img {
+    width: 100%; /* Full width */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 16px; /* Add spacing below image */
+    margin-right: 0; /* Remove right margin */
+  }
+}
+
+/* For mobile devices (up to 480px) */
+@media (max-width: 480px) {
+  .recipe-card {
+    padding: 12px; /* Reduce padding */
+    margin: 8px;   /* Reduce margin */
+  }
+
+  .recipe-image img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 12px;
+  }
+
+  .modal-content {
+    width: 95%; /* Make modal wider for small screens */
+    padding: 16px;
+    height: 300px; /* Let height adjust based on content */
+    margin: auto;
+  }
+
+  .modal-content p {
+    margin: 50px 0 10px 0; /* Adjust spacing */
+  }
+}
+

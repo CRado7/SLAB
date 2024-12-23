@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_SAVED_RECIPES } from '../utils/queries'; // GraphQL query to fetch saved recipes
 import { Link } from 'react-router-dom';
@@ -17,7 +17,7 @@ const Favorites = () => {
         {data.me.savedRecipes && data.me.savedRecipes.length > 0 ? (
           data.me.savedRecipes.map((recipe) => (
             <div key={recipe._id} className="recipe-card-container">
-              <Link to={`/SLAB/recipes/${recipe._id}`}>
+              <Link to={`/recipes/${recipe._id}`}>
                 <RecipeCard recipe={recipe} />
               </Link>
             </div>

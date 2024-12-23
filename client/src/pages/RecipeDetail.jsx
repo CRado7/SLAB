@@ -31,6 +31,11 @@ const RecipeDetail = () => {
     onError: (err) => console.error("Error unsaving recipe:", err),
   });
 
+
+  useEffect(() => {
+    console.log(window.history.state);
+  }, []);
+
   useEffect(() => {
     if (data && data.recipe) {
       setRecipe(data.recipe);
@@ -58,45 +63,51 @@ const RecipeDetail = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="recipe-detail">
+    <div className="recipe-detail-page">
       {recipe ? (
         <>
-          <h2>{recipe.recipeTitle}</h2>
-          <p><strong>Author:</strong> {recipe.recipeAuthor}</p>
-          <p><strong>Created At:</strong> {new Date(recipe.createdAt).toLocaleDateString()}</p>
+          <div className="recipe-image">
+            <img src={recipe.recipePicture} alt={recipe.recipeTitle} />
+          </div>
 
-          <h3>Ingredients:</h3>
-          <ul>
-            {Array.isArray(recipe.recipeIngredients)
-              ? recipe.recipeIngredients.map((ingredient, index) => (
+          <div className="recipe-detail-page">
+            <h2>{recipe.recipeTitle}</h2>
+            <p><strong>Author:</strong> {recipe.recipeAuthor}</p>
+            <p><strong>Created At:</strong> {new Date(recipe.createdAt).toLocaleDateString()}</p>
+
+            <h3>Ingredients:</h3>
+            <ul>
+              {Array.isArray(recipe.recipeIngredients)
+                ? recipe.recipeIngredients.map((ingredient, index) => (
                   <li key={index}>{ingredient}</li>
-                ))
-              : recipe.recipeIngredients.split(', ').map((ingredient, index) => (
-                  <li key={index}>{ingredient}</li>
-                ))}
-          </ul>
+                  ))
+                  : recipe.recipeIngredients.split(', ').map((ingredient, index) => (
+                    <li key={index}>{ingredient}</li>
+                    ))}
+            </ul>
 
-          <h3>Instructions:</h3>
-          <p>{recipe.recipeInstructions}</p>
+            <h3>Instructions:</h3>
+            <p>{recipe.recipeInstructions}</p>
 
-          <button
-            className={`favorite-button ${isSaved ? 'saved' : ''}`}
-            onClick={handleFavoriteClick}
-            aria-label={isSaved ? 'Unfavorite' : 'Favorite'}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill={isSaved ? "red" : "none"}
-              stroke={isSaved ? "red" : "currentColor"}
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="heart-icon"
+            <button
+              className={`favorite-button ${isSaved ? 'saved' : ''}`}
+              onClick={handleFavoriteClick}
+              aria-label={isSaved ? 'Unfavorite' : 'Favorite'}
             >
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill={isSaved ? "red" : "none"}
+                stroke={isSaved ? "red" : "currentColor"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="heart-icon"
+              >
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+              </svg>
+            </button>
+          </div>
         </>
       ) : (
         <p>Recipe not found.</p>

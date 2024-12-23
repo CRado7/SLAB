@@ -1,67 +1,130 @@
-// Navbar.js
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 import Auth from '../utils/auth';
 import RecipeModal from './RecipeModal'; // Import the RecipeModal component
 
+import SLAB from '../assets/SLAB-LOGO.svg';
+
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [prevScrollY, setPrevScrollY] = useState(0);
+  const [hidden, setHidden] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
   const username = Auth.loggedIn() ? Auth.getProfile().data.username : null;
+  const navigate = useNavigate();
+
+  // Redirect to homepage if not logged in
+  useEffect(() => {
+    if (!Auth.loggedIn()) {
+      navigate("/");
+    }
+  }, []);
+
+  // Handle scrolling for showing/hiding navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > prevScrollY && !hidden) {
+        setHidden(true);
+      } else if (window.scrollY < prevScrollY && hidden) {
+        setHidden(false);
+      }
+      setPrevScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [prevScrollY, hidden]);
+
+  // Detect window resizing
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1000);
+      if (window.innerWidth > 1000) {
+        setDropdownOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // Disable scrolling when the modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden'; // Disable scrolling
+    } else {
+      document.body.style.overflow = ''; // Revert to normal scrolling
+    }
+  
+    return () => {
+      document.body.style.overflow = ''; // Ensure cleanup on unmount
+    };
+  }, [isModalOpen]);
 
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
-    navigate("/");
+    setDropdownOpen(false);
   };
 
   const handleAddPostClick = () => {
-    setIsModalOpen(true); // Open the add post modal
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); // Close the modal
+    setIsModalOpen(false);
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
   };
 
   const handleSubmitRecipe = (recipeName, ingredients) => {
-    // Handle the form submission (sending data to the server, etc.)
     console.log("Recipe Posted:", recipeName, ingredients);
-    // You can add logic to save the recipe or perform further actions
   };
 
   return (
-    <nav className="navbar">
-      {/* Left Section */}
+    <nav className={`navbar ${hidden ? 'navbar-hidden' : ''}`}>
       <div className="navbar-left">
         {username && <span className="user-name">{username}</span>}
       </div>
 
-      {/* Center Logo */}
       <div className="navbar-logo">
-        <Link to="/"><img src="/path/to/logo.png" alt="Logo" /></Link>
+        <Link to="/"><img src={SLAB} alt="Logo" /></Link>
       </div>
 
-      {/* Right Section (Add Post, Login/Signup or Logout/Favorites) */}
       <div className={`navbar-right ${dropdownOpen ? 'dropdown-open' : ''}`}>
         {Auth.loggedIn() ? (
           <>
-            <button onClick={handleAddPostClick} className="add-post-btn">Add a Post</button>
-            <button onClick={() => setDropdownOpen(!dropdownOpen)} className="menu-button">☰</button>
+            {isMobile && (
+              <button onClick={toggleDropdown} className="menu-button">☰</button>
+            )}
             <div className="navbar-dropdown">
-              <Link to="favorites" className="favorites-btn">Favorites</Link>
+              <button onClick={handleAddPostClick} className="add-post-btn">Add Post</button>
+              <Link to="/favorites" className="favorites-btn" onClick={() => setDropdownOpen(false)}>
+                Favorites
+              </Link>
               <button onClick={logout} className="logout-btn">Logout</button>
             </div>
           </>
         ) : (
           <>
-            <Link to="login" className="login-btn">Login</Link>
-            <Link to="signup" className="signup-btn">Signup</Link>
+            {isMobile && (
+              <button onClick={toggleDropdown} className="menu-button">☰</button>
+            )}
+            <div className="navbar-dropdown">
+              <Link to="/login" className="login-btn" onClick={() => setDropdownOpen(false)}>Login</Link>
+              <Link to="/signup" className="signup-btn" onClick={() => setDropdownOpen(false)}>Signup</Link>
+            </div>
           </>
         )}
       </div>
 
-      {/* Modal for Add Post Form */}
       <RecipeModal 
         isOpen={isModalOpen} 
         onClose={handleCloseModal} 
@@ -72,4 +135,3 @@ function Navbar() {
 }
 
 export default Navbar;
-

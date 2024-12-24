@@ -1,29 +1,12 @@
 services:
-  # Backend service
   - type: web
-    name: SLAB-backend
+    name: slab
     env: node
-    region: us
-    branch: main
-    autoDeploy: true
-    buildCommand: npm install
-    startCommand: npm run start
+    buildCommand: npm install && npm run build  # Install dependencies and build frontend
+    startCommand: npm run develop  # Start both frontend and backend concurrently
     plan: free
-    # envVars:
-    #   - key: DATABASE_URL
-    #     value: your_database_connection_string
-    #   - key: JWT_SECRET
-    #     value: your_jwt_secret
+    region: virginia  # or any region you prefer
+    envVars:
+      - key: NODE_ENV
+        value: production
 
-  # Frontend service
-  - type: web
-    name: SLAB-frontend
-    env: static
-    region: us
-    branch: main
-    autoDeploy: true
-    buildCommand: npm install && npm run build
-    staticPublishPath: build
-    # envVars:
-    #   - key: REACT_APP_API_URL
-    #     value: https://blog-backend.onrender.com

@@ -9,4 +9,8 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: MONGODB_URI
+        value: "mongodb+srv://christopherferraro34:Lakewood84@cluster0.yoqo2y2.mongodb.net/"
+      - key: PORT
+        value: "3000"  # Use the backend's port here
 

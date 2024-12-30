@@ -62,15 +62,16 @@ function RecipeModal({ isOpen, onClose, onSubmit }) {
   if (!isOpen) return null;
 
   return (
-    <div className="recipe-modal" onClick={onClose}>
-      <div className="recipe-modal-content" onClick={(e) => e.stopPropagation()}>
-        <span className="close" onClick={onClose}>&times;</span>
-        <h2>Add a New Recipe</h2>
+    <div className="recipe-popup" onClick={onClose}>
+      <div className="recipe-popup-content" onClick={(e) => e.stopPropagation()}>
+        <span className="close-btn" onClick={onClose}>&times;</span>
+        <h4 className="popup-header">Add a New Recipe</h4>
         <form onSubmit={handleSubmit}>
           <label>
             Recipe Name:
             <input
               type="text"
+              placeholder='Enter the recipe name'
               name="recipeName"
               value={recipeName}
               onChange={(e) => setRecipeName(e.target.value)}
@@ -100,7 +101,7 @@ function RecipeModal({ isOpen, onClose, onSubmit }) {
             ))}
           </label>
           
-          <button type="button" onClick={handleAddIngredient}>
+          <button type="button" className="add-button" onClick={handleAddIngredient}>
             Add Ingredient
           </button>
 
@@ -125,9 +126,9 @@ function RecipeModal({ isOpen, onClose, onSubmit }) {
             />
           </label>
 
-          <button type="submit" disabled={loading}>Post Recipe</button>
+          <button type="submit" className="post-recipe" disabled={loading}>Post Recipe</button>
         </form>
-
+        
         {error && <p>Error adding recipe: {error.message}</p>}
       </div>
     </div>

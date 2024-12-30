@@ -63,14 +63,15 @@ const RecipeDetail = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="recipe-detail-page">
+    <div className="recipe-detail-container">
       {recipe ? (
         <>
-          <div className="recipe-image">
+          <div className="recipe-detail-image">
             <img src={recipe.recipePicture} alt={recipe.recipeTitle} />
           </div>
 
           <div className="recipe-detail-page">
+            
             <h2>{recipe.recipeTitle}</h2>
             <p><strong>Author:</strong> {recipe.recipeAuthor}</p>
             <p><strong>Created At:</strong> {new Date(recipe.createdAt).toLocaleDateString()}</p>

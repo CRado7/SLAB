@@ -1,105 +1,96 @@
-/* Basic Navbar Styles */
-.navbar, a, button{
+/* Sidebar Container */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Hidden initially */
+  height: 100%;
+  width: 250px;
+  background-color: #2c3e50;
+  color: rgb(255, 250, 227);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: left 0.3s ease; /* Smooth transition */
+}
+
+/* Sidebar Open State */
+.sidebar.open {
+  left: 0; /* Moves into view */
+}
+
+/* Sidebar Header */
+.sidebar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: .25rem;
-  background-color: #024049;
-  color: white;
-  position: relative;
+  padding: 1rem;
 }
 
-.navbar-logo img {
-  width: 75px;
-}
-
-a, button {
-  color: white;
-  text-decoration: none;
-  background-color: transparent;
-  font-size: small;
-  text-transform: uppercase;
-  transition: .3s;
-}
-
-a:hover, .favorites-btn:hover, .add-post-btn:hover, .logout-btn:hover {
-  text-decoration: none;
-  background-color: rgb(255, 250, 227);
-  border-radius: 0;
-  color: #024049;
-}
-
-.navbar-left, .navbar-right {
-  display: flex;
-  align-items: center;
-}
-
-/* Right-side items */
-.navbar-right button {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-/* Signup button styling */
-.signup-btn {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-/* Right-side items styling adjustments */
-.navbar-right button {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: small;
-}
-
-.navbar-hidden {
-  transform: translateY(-100%); /* Move the navbar up and out of view */
-  transition: transform 0.3s ease;
+.sidebar-logo {
+  max-width: 150px;
+  margin-bottom: 10px;
 }
 
 .user-name {
-  margin-right: 1rem;
+  font-size: 18px;
   font-weight: bold;
 }
 
-/* Dropdown menu styling for tablet view */
-.menu-button {
-  display: none;
-}
-
-.navbar-dropdown {
+/* Sidebar Menu */
+.sidebar-menu {
   display: flex;
-  flex-direction: flex-end;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.dropdown-open .navbar-dropdown {
-  display: flex;
-  position: absolute;
-  right: 0;
-  background: rgba(2, 65, 75, 0.90);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+.menu-item {
+  /* width: 250px; */
+  background-color: transparent;
+  color: rgb(255, 250, 227);
+  border: none;
+  font-size: 16px;
+  text-align: left;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Responsive for tablet screens */
-@media (max-width: 1000px) {
-  .navbar-dropdown {
-    display: none;
-  }
+.menu-item:hover {
+  background-color: #34495e;
+}
 
-  .menu-button {
-    display: block;
-  }
+.menu-item a {
+  color: rgb(255, 250, 227);
+  text-decoration: none;
+}
 
-  .dropdown-open .navbar-dropdown {
-    position: absolute;
-    top: 100%;
-    width: 100%;
-  }
+a:hover {
+  text-decoration: none;
+  color: rgb(255, 250, 227);
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px; /* Aligns with the sidebar */
+  z-index: 1000;
+  background-color: #2c3e50;
+  color: rgb(255, 250, 227);
+  border: none;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, left 0.3s ease, opacity .3s ease-in-out;
+}
+
+/* Move the button with the sidebar */
+.sidebar.open + .sidebar-toggle {
+  left: 185px;
+  padding-right: 10px; /* Sidebar width (250px) + 20px spacing */
 }

@@ -40,7 +40,7 @@ const RecipeCard = ({ recipe }) => {
         <img src={recipe.recipePicture} alt={recipe.recipeTitle} />
       </div>
 
-      <div className="recipe-detail"> 
+      <div className="recipe-card-detail"> 
         <h3>{recipe.recipeTitle}</h3>
         <p>Chef: {recipe.recipeAuthor}</p>
         <p>Created On: {new Date(recipe.createdAt).toLocaleDateString()}</p>

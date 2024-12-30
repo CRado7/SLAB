@@ -3,8 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from './App.jsx';
 import HomePage from './pages/HomePage';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
 import RecipeDetail from './pages/RecipeDetail';
 import Favorites from './pages/Favorites';
 import ResetPassword from './pages/ResetPassword.jsx';
@@ -21,12 +19,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />
-      }, {
-        path: 'login',
-        element: <Login />
-      }, {
-        path: 'signup',
-        element: <Signup />
       }, {
         path: 'recipes/:recipeId',
         element: <RecipeDetail />

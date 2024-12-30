@@ -6,6 +6,17 @@
 }
 
 /* Prevent body from scrolling */
+/* Disable scrolling */
+.no-scroll {
+    overflow: hidden;
+  }
+  
+  /* Optional: Ensure body content doesn't shift */
+  body.no-scroll {
+    position: fixed;
+    width: 100%;
+  }
+  
   
 
 h1, h2, h3, h4, h5, h6 {
@@ -13,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #root {
-    background-color:rgb(255, 250, 227);
+    background-color:#dcdcdc;
 }
 
 /* header */

@@ -1,26 +1,36 @@
 /* General styling for the recipe detail container */
-.recipe-detail-page {
-  max-width: 800px;
-  margin: 5px auto;
-  padding: 20px;
-  background-color: #fff;
+.recipe-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 100px 8px 0;
+  padding: 5px;
+  backdrop-filter: blur(2px) saturate(0%);
+  -webkit-backdrop-filter: blur(2px) saturate(100%);
+  background-color: rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
   border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the recipe detail page */
+.recipe-detail-page, .recipe-detail-image{
+  padding: 20px;
+  margin: 10px;
   font-family: Arial, sans-serif;
   color: #333;
+  width: 45%;
+  max-width: 800px;
+  box-sizing: border-box;
 }
 
-/* Styling for the recipe image container */
-.recipe-image {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.recipe-image img {
-  max-width: 100%;
-  height: auto;
+.recipe-detail-image img {
   border-radius: 8px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 /* Title and author section */
@@ -51,6 +61,7 @@
 
 .recipe-detail-page ul li {
   margin-bottom: 5px;
+  line-height: 1.5;
 }
 
 /* Favorite button styling */
@@ -61,7 +72,6 @@
   display: flex;
   align-items: center;
   margin-top: 20px;
-  z-index: 1;
 }
 
 .favorite-button .heart-icon {
@@ -70,7 +80,7 @@
   transition: fill 0.3s, stroke 0.3s;
 }
 
-.favorite-button .heart-icon{
+.favorite-button .heart-icon {
   stroke: red;
 }
 
@@ -89,25 +99,49 @@
 .recipe-detail-page p {
   font-size: 1rem;
   text-align: center;
+  color: #666;
 }
 
 /* Responsive design for smaller screens */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .recipe-detail-page {
-    width: 95%;
+    width: 100%;
     padding: 15px;
   }
 
-  .recipe-detail-page h2 {
+  .recipe-detail h2 {
     font-size: 1.5rem;
   }
 
-  .recipe-detail-page h3 {
+  .recipe-detail h3 {
     font-size: 1.25rem;
   }
 
   .favorite-button .heart-icon {
     width: 28px;
     height: 28px;
+  }
+
+  .recipe-detail-image {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .recipe-detail-page {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .recipe-detail-image img {
+    max-width: 90%;
+  }
+
+  .recipe-detail h2 {
+    font-size: 1.25rem;
+  }
+
+  .recipe-detail h3 {
+    font-size: 1rem;
   }
 }

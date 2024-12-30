@@ -11,7 +11,7 @@ const Favorites = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="favorites-page">
+    <div className="home-container">
       <h2>Your Favorite Recipes</h2>
       <div className="recipe-list">
         {data.me.savedRecipes && data.me.savedRecipes.length > 0 ? (

@@ -29,10 +29,14 @@ function Navbar() {
   }, [isLoginPopupOpen, isSignupPopupOpen, isRecipeModalOpen]);
 
   useEffect(() => {
-    if (!Auth.loggedIn()) {
-      navigate("/");
+    const isResetPage = window.location.pathname.includes('/reset-password');
+    
+    if (!Auth.loggedIn() && !isResetPage) {
+        console.log("Redirecting to home because not logged in and not on reset page.");
+        navigate("/");
     }
-  }, [navigate]);
+}, [navigate]);
+
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);

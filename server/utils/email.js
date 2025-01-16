@@ -1,25 +1,34 @@
 const nodemailer = require('nodemailer');
+require('dotenv').config(); 
 
 const sendPasswordResetEmail = async (email, token) => {
-// Looking to send emails in production? Check out our Email API/SMTP product!
     const transporter = nodemailer.createTransport({
-        host: "sandbox.smtp.mailtrap.io",
-        port: 2525,
+        service: 'gmail',
         auth: {
-        user: "beec2dac75687c",
-        pass: "9691e2287d0e9c"
+            user: process.env.SMTP_USER,  // Your Gmail address
+            pass: "sopj qsfd stwf gein"   // App Password or Gmail password (if less secure apps enabled)
         }
     });
 
-  const resetUrl = `http://localhost:3001/reset-password/${token}`;
-  const mailOptions = {
-    from: 'Crater <no-reply@yourdomain.com>',
-    to: email,
-    subject: 'Password Reset Request',
-    text: `Click on this link to reset your password: ${resetUrl}`,
-  };
+    const resetUrl = `http://localhost:3001/reset-password/${token}`;
+    const mailOptions = {
+        from: 'SLAB <christopher.ferraro34@gmail.com>',
+        to: email,
+        subject: 'Password Reset Request',
+        html: `
+            <h1>Password Reset</h1>
+            <p>Click the link below to reset your password:</p>
+            <a href="${resetUrl}" style="padding: 10px; background: tomato; color: white; text-decoration: none;">Reset Password</a>
+            <p>If you didn't request this, you can ignore this email.</p>
+        `
+    };
 
-  await transporter.sendMail(mailOptions);
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log('Password reset email sent successfully');
+    } catch (error) {
+        console.error('Error sending password reset email:', error);
+    }
 };
 
 module.exports = { sendPasswordResetEmail };

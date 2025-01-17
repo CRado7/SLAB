@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from "react";
 import RecipeList from "../components/RecipeList";
-import SLAB from "../assets/SLAB-LOGO.svg";
+import HOME from "../assets/SLAB-HOME.svg"
 import "../styles/HomePage.css";
-import LoginPopup from "../components/LoginPopup";
-import SignupPopup from "../components/SignupPopup";
 
 function HomePage() {
 
   return (
     <div className="home-container">
-      <div className="landing-page">
-        <img src={SLAB} alt="SLAB" className="home-logo" />
-      </div>
-
-      {/* Recipe List visible to all users */}
-      <h1>All Recipes</h1>
+      <img src= {HOME} className="slab"></img>
+      <p><span>Welcome to SLAB.</span> We are home to a collection of surfers, early-risers, and on-the-goers who need energy and to keep moving. Our mission is to build a commiunity that shares their delicious creations to fuel our adventures without weighing us down.</p>
       <div className="recipe-list-container">
         <RecipeList />
       </div>

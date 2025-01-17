@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { GET_SAVED_RECIPES } from '../utils/queries'; // GraphQL query to fetch saved recipes
 import { Link } from 'react-router-dom';
 import RecipeCard from '../components/RecipeCard'; // Import the RecipeCard component
+import HOME from "../assets/SLAB-HOME.svg"
 
 const Favorites = () => {
   const { loading, error, data } = useQuery(GET_SAVED_RECIPES); // Fetch saved recipes
@@ -12,8 +13,9 @@ const Favorites = () => {
 
   return (
     <div className="home-container">
-      <h2>Your Favorite Recipes</h2>
-      <div className="recipe-list">
+      <img src= {HOME} className="slab"></img>
+      <h3>Your Favorite Recipes</h3>
+      <div className="recipe-list-container">
         {data.me.savedRecipes && data.me.savedRecipes.length > 0 ? (
           data.me.savedRecipes.map((recipe) => (
             <div key={recipe._id} className="recipe-card-container">

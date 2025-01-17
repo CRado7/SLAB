@@ -1,142 +1,73 @@
-.recipe-list {
-  display: flex; /* Use flex layout */
-  flex-wrap: wrap; /* Allow items to wrap to the next line */
-  justify-content: center; /* Center items horizontally */
-  align-items: flex-start; /* Align items at the top */
-  gap: 10px; /* Add space between items */
-  z-index: 25;
-}
-
-.recipe-list a {
-  text-decoration: none; /* Remove underline from links */
-  color: inherit; /* Inherit text color */
-  display: block; /* Make the link a block element */
-  width: 300px;
-}
-
 .recipe-card {
-  flex: 1 1 calc(33.333% - 10px); /* Responsive width: 3 cards per row */
-  max-width: calc(50% - 10px); /* Prevent cards from stretching too wide */
-  min-width: 300px; /* Ensure cards don't become too narrow */
-  box-sizing: border-box; /* Include padding and border in width/height */
-  aspect-ratio: 3 / 4; /* Maintain a fixed aspect ratio */
-  backdrop-filter: blur(2px) saturate(0%);
-  -webkit-backdrop-filter: blur(2px) saturate(100%);
-  background-color: rgba(255, 255, 255, 0.35);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.125);
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  z-index: 25;
-  transition: .3s;
-}
-
-.recipe-card h3 {
-  margin: 0; /* Remove default margin */
-  font-size: 1.5rem; /* Larger font size */
-  color: #222; /* Dark text color */
-}
-
-.recipe-card img {
-  width: 100%; /* Ensure images resize with the card */
-  height: auto; /* Maintain image aspect ratio */
-  border-radius: 4px; /* Optional: Add rounded corners to images */
-}
-
-
-
-
-/* Hover Effect */
-.recipe-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Modal Styling */
-.modal {
   display: flex;
+  align-content: center;
+  border: 1px solid transparent; /* Transparent border to prevent shifting */
+  /* box-shadow: 0 0 15px rgba(133, 133, 133, 0.7); */
+  overflow: hidden;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  transition: transform 0.4s ease-in-out;
+  margin: 0 0 20px;
+  width: 100%;
+}
+
+.recipe-card:hover {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1)
+}
+
+.recipe-image img {
+  width: 150px;
+  height: 150px;
+  padding: 6px;
+  object-fit: cover;
+  border-right: 1px solid #858585;
+}
+
+.recipe-card-detail {
+  padding: 15px;
+}
+
+.recipe-card-detail h3 {
+  font-size: 1.6rem;
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.recipe-card-detail p {
+  font-size: 1rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+/* Modal Styles */
+.modal {
   position: fixed;
-  z-index: 1;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .modal-content {
   background-color: white;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 300px;
-  height: 175px;
-  text-align: center;
+  border-radius: 8px;
+  padding: 10px 20px 30px;
+  max-width: 400px;
+  text-align: right;
 }
 
-.modal-content p {
-  margin: 40px 0 30px 0;
-}
-
-/* Close Button */
 .card-close {
-  color: #aaa;
-  float: right;
-  top: 0;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.card-close:hover,
-.card-close:focus {
-  color: black;
-  text-decoration: none;
+  position: relative;
+  font-size: 2rem;
   cursor: pointer;
+  color: #333;
 }
 
-/* Responsive Design */
-
-/* For tablets and smaller devices (up to 768px) */
-@media (max-width: 768px) {
-  .recipe-card {
-    flex-direction: column; /* Stack image and text vertically */
-    align-items: stretch;
-  }
-
-  .recipe-image img {
-    width: 100%; /* Full width */
-    height: auto; /* Maintain aspect ratio */
-    margin-bottom: 16px; /* Add spacing below image */
-    margin-right: 0; /* Remove right margin */
-  }
+.card-close:hover {
+  color: tomato;
 }
-
-/* For mobile devices (up to 480px) */
-@media (max-width: 480px) {
-  .recipe-card {
-    padding: 12px; /* Reduce padding */
-    margin: 8px;   /* Reduce margin */
-    max-width: 100%; /* Full width */
-  }
-
-  .recipe-image img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 12px;
-  }
-
-  .modal-content {
-    width: 95%; /* Make modal wider for small screens */
-    padding: 16px;
-    height: 300px; /* Let height adjust based on content */
-    margin: auto;
-  }
-
-  .modal-content p {
-    margin: 50px 0 10px 0; /* Adjust spacing */
-  }
-}
-

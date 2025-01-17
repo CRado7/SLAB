@@ -24,7 +24,7 @@ span {
   margin: 50px 0 0 0;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 440px) {
   .home-container p {
     width: 100%;
     padding: 15px;

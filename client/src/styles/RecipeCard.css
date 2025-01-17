@@ -72,15 +72,15 @@
   color: tomato;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 440px) {
   .recipe-card {
     flex-direction: column;
     gap: 20px;
   }
 
   .recipe-image img{
-    width: 320px;
-    height: 320px;
+    width: 100%;
+    height: auto;
     padding: 15px;
   }
 

@@ -20,11 +20,11 @@
   height: 150px;
   padding: 6px;
   object-fit: cover;
-  border-right: 1px solid #858585;
 }
 
 .recipe-card-detail {
   padding: 15px;
+  border-left: 1px solid #858585;
 }
 
 .recipe-card-detail h3 {
@@ -70,4 +70,21 @@
 
 .card-close:hover {
   color: tomato;
+}
+
+@media (max-width: 320px) {
+  .recipe-card {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .recipe-image img{
+    width: 320px;
+    height: 320px;
+    padding: 15px;
+  }
+
+  .recipe-card-detail {
+    border-left: none;
+  }
 }

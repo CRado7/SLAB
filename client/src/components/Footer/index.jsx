@@ -17,7 +17,7 @@ const Footer = () => {
         <footer className="w-100 mt-auto bg-secondary p-4 footer">
             <div className="container text-center mb-5">
                 <h4 className="footer-text">
-                    Made by surfers for{' '}
+                    Made by{' '}
                     <span className="footer-word">{words[currentWordIndex]}</span>
                 </h4>
             </div>

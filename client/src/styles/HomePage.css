@@ -23,5 +23,12 @@ span {
 .recipe-list-container {
   margin: 50px 0 0 0;
 }
+
+@media (max-width: 320px) {
+  .home-container p {
+    width: 100%;
+    padding: 15px;
+  }
+}
   
   

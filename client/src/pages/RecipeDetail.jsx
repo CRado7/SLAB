@@ -92,7 +92,7 @@ const RecipeDetail = () => {
               </ul>
 
               <h3>Instructions:</h3>
-              <p>{recipe.recipeInstructions}</p>
+              <p className="instructions">{recipe.recipeInstructions}</p>
 
               <button
                 className={`favorite-button ${isSaved ? 'saved' : ''}`}
